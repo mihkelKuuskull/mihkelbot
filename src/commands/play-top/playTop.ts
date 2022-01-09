@@ -1,5 +1,6 @@
 import { QueryType } from 'discord-player';
-import { GuildMember } from 'discord.js';
+import { BaseCommandInteraction, GuildMember } from 'discord.js';
+import { isUserInChannel } from '../validation';
 
 export const playTop = {
     name: 'playtop',
@@ -12,21 +13,11 @@ export const playTop = {
             required: true,
         },
     ],
-    async execute(interaction, player) {
+    async execute(interaction: BaseCommandInteraction, player) {
         try {
-            if (!(interaction.member instanceof GuildMember) || !interaction.member.voice.channel) {
+            if (!isUserInChannel(interaction)) {
                 return void interaction.reply({
                     content: 'You are not in a voice channel!',
-                    ephemeral: true,
-                });
-            }
-
-            if (
-                interaction.guild.me.voice.channelId &&
-                interaction.member.voice.channelId !== interaction.guild.me.voice.channelId
-            ) {
-                return void interaction.reply({
-                    content: 'You are not in my voice channel!',
                     ephemeral: true,
                 });
             }
@@ -54,7 +45,7 @@ export const playTop = {
             });
 
             try {
-                if (!queue.connection) await queue.connect(interaction.member.voice.channel);
+                if (!queue.connection) await queue.connect((interaction.member as GuildMember).voice.channel);
             } catch {
                 void player.deleteQueue(interaction.guildId);
                 return void interaction.followUp({

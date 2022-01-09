@@ -1,23 +1,14 @@
-import { GuildMember } from 'discord.js';
+import { BaseCommandInteraction } from 'discord.js';
 import { trimDiscordMessage } from '../../utils';
+import { isUserInChannel } from '../validation';
 
 export const shuffle = {
     name: 'shuffle',
     description: 'shuffle the queue!',
-    async execute(interaction, player) {
-        if (!(interaction.member instanceof GuildMember) || !interaction.member.voice.channel) {
+    async execute(interaction: BaseCommandInteraction, player) {
+        if (!isUserInChannel(interaction)) {
             return void interaction.reply({
                 content: 'You are not in a voice channel!',
-                ephemeral: true,
-            });
-        }
-
-        if (
-            interaction.guild.me.voice.channelId &&
-            interaction.member.voice.channelId !== interaction.guild.me.voice.channelId
-        ) {
-            return void interaction.reply({
-                content: 'You are not in my voice channel!',
                 ephemeral: true,
             });
         }

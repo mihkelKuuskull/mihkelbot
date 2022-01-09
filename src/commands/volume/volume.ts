@@ -1,4 +1,5 @@
-import { GuildMember } from 'discord.js';
+import { BaseCommandInteraction } from 'discord.js';
+import { isUserInChannel } from '../validation';
 
 export const volume = {
     name: 'volume',
@@ -11,20 +12,10 @@ export const volume = {
             required: true,
         },
     ],
-    async execute(interaction, player) {
-        if (!(interaction.member instanceof GuildMember) || !interaction.member.voice.channel) {
+    async execute(interaction: BaseCommandInteraction, player) {
+        if (!isUserInChannel(interaction)) {
             return void interaction.reply({
                 content: 'You are not in a voice channel!',
-                ephemeral: true,
-            });
-        }
-
-        if (
-            interaction.guild.me.voice.channelId &&
-            interaction.member.voice.channelId !== interaction.guild.me.voice.channelId
-        ) {
-            return void interaction.reply({
-                content: 'You are not in my voice channel!',
                 ephemeral: true,
             });
         }
@@ -36,7 +27,7 @@ export const volume = {
                 content: '❌ | No music is being played!',
             });
 
-        let volume = interaction.options.get('volume').value;
+        let volume = Number(interaction.options.get('volume').value);
         volume = Math.max(0, volume);
         volume = Math.min(200, volume);
         const success = queue.setVolume(volume);
