@@ -1,10 +1,11 @@
+import { Player } from 'discord-player';
 import { BaseCommandInteraction } from 'discord.js';
 import { isUserInChannel } from '../validation';
 
 export const stop = {
     name: 'stop',
     description: 'Stop all songs in the queue!',
-    async execute(interaction: BaseCommandInteraction, player) {
+    async execute(interaction: BaseCommandInteraction, player: Player) {
         if (!isUserInChannel(interaction)) {
             return void interaction.reply({
                 content: 'You are not in a voice channel!',

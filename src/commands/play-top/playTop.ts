@@ -1,4 +1,4 @@
-import { QueryType } from 'discord-player';
+import { Player, QueryType } from 'discord-player';
 import { BaseCommandInteraction, GuildMember } from 'discord.js';
 import { isUserInChannel } from '../validation';
 
@@ -13,7 +13,7 @@ export const playTop = {
             required: true,
         },
     ],
-    async execute(interaction: BaseCommandInteraction, player) {
+    async execute(interaction: BaseCommandInteraction, player: Player) {
         try {
             if (!isUserInChannel(interaction)) {
                 return void interaction.reply({
@@ -24,7 +24,7 @@ export const playTop = {
 
             await interaction.deferReply();
 
-            const query = interaction.options.get('query').value;
+            const query = interaction.options.get('query').value as string;
             const searchResult = await player
                 .search(query, {
                     requestedBy: interaction.user,
@@ -56,7 +56,9 @@ export const playTop = {
             await interaction.followUp({
                 content: `⏱ | Loading your ${searchResult.playlist ? 'playlist' : 'track'}...`,
             });
-            searchResult.playlist ? queue.insert(searchResult.tracks, 0) : queue.insert(searchResult.tracks[0], 0);
+            searchResult.playlist
+                ? queue.insert(searchResult.tracks as any, 0)
+                : queue.insert(searchResult.tracks[0], 0);
             if (!queue.playing) await queue.play();
         } catch (error) {
             console.log(error);

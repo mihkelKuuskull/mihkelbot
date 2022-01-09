@@ -1,4 +1,4 @@
-import { QueryType } from 'discord-player';
+import { Player, QueryType } from 'discord-player';
 import { BaseCommandInteraction, GuildMember } from 'discord.js';
 import { isUserInChannel } from '../validation';
 
@@ -13,7 +13,7 @@ export const play = {
             required: true,
         },
     ],
-    async execute(interaction: BaseCommandInteraction, player) {
+    async execute(interaction: BaseCommandInteraction, player: Player) {
         try {
             if (!isUserInChannel(interaction)) {
                 return void interaction.reply({
@@ -24,7 +24,7 @@ export const play = {
 
             await interaction.deferReply();
 
-            const query = interaction.options.get('query').value;
+            const query = interaction.options.get('query').value as string;
             const searchResult = await player
                 .search(query, {
                     requestedBy: interaction.user,

@@ -1,4 +1,4 @@
-import { QueueRepeatMode } from 'discord-player';
+import { Player, QueueRepeatMode } from 'discord-player';
 import { BaseCommandInteraction } from 'discord.js';
 import { isUserInChannel } from '../validation';
 
@@ -31,7 +31,7 @@ export const loop = {
             ],
         },
     ],
-    async execute(interaction: BaseCommandInteraction, player) {
+    async execute(interaction: BaseCommandInteraction, player: Player) {
         try {
             if (!isUserInChannel(interaction)) {
                 return void interaction.reply({
@@ -47,7 +47,7 @@ export const loop = {
                 return void interaction.followUp({ content: '❌ | No music is being played!' });
             }
 
-            const loopMode = interaction.options.get('mode').value;
+            const loopMode = Number(interaction.options.get('mode').value);
             const success = queue.setRepeatMode(loopMode);
             const mode = loopMode === QueueRepeatMode.TRACK ? '🔂' : loopMode === QueueRepeatMode.QUEUE ? '🔁' : '▶';
 

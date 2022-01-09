@@ -1,4 +1,5 @@
-import { BaseCommandInteraction, GuildMember } from 'discord.js';
+import { Player } from 'discord-player';
+import { BaseCommandInteraction } from 'discord.js';
 import { trimDiscordMessage } from '../../utils';
 import { isUserInChannel } from '../validation';
 
@@ -6,7 +7,7 @@ export const queue = {
     name: 'queue',
     description: 'View the queue of current songs!',
 
-    async execute(interaction: BaseCommandInteraction, player) {
+    async execute(interaction: BaseCommandInteraction, player: Player) {
         if (!isUserInChannel(interaction)) {
             return void interaction.reply({
                 content: 'You are not in a voice channel!',
