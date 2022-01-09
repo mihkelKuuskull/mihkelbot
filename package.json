@@ -1,11 +1,10 @@
 {
-    "name": "aml",
-    "description": "Anti Money Laundering",
+    "name": "mihkelbot",
+    "description": "For my music needs",
     "version": "1.0.0",
     "license": "ISC",
     "main": "dist/app.js",
     "scripts": {
-        "eslint": "eslint --init",
         "start": "nodemon dist/app.js",
         "lint": "eslint --ext '.ts' src test",
         "lint-fix": "eslint --fix --ext '.ts' src test",
