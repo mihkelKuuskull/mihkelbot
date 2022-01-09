@@ -4,7 +4,7 @@ import { initMusicPlayer } from './music-player/musicPlayer';
 
 const config = {
     token: 'OTI5NzIyMDY5MzA0ODg1MjY5.YdrdJg.My-cqtm2nY6Ed02kELRDlfTjF4c',
-    activity: 'your music selections',
+    activity: 'Eesti hümn, aga vaikselt iseendale',
 };
 
 export const client = new DiscordClient();
