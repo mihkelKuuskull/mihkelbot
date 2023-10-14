@@ -1,3 +1,7 @@
-import { client } from './client/client';
+import { config } from './config';
+import { client, loadDiscordEvents, loadPlayerEvents } from './services/client.service';
+import './services/lyrics.service';
 
-client.login('OTI5NzIyMDY5MzA0ODg1MjY5.YdrdJg.My-cqtm2nY6Ed02kELRDlfTjF4c');
+loadDiscordEvents();
+loadPlayerEvents();
+client.login(config.app.token);

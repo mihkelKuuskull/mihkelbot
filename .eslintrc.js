@@ -18,7 +18,9 @@ module.exports = {
     plugins: ['@typescript-eslint'],
     rules: {
         '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
         'object-curly-spacing': ['error', 'always'],
+        curly: 'error',
         'prettier/prettier': [
             'error',
             {
