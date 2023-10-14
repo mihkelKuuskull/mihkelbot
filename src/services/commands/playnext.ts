@@ -18,7 +18,7 @@ export const playNextCommand = {
 
         const queue = useQueue(inter.guild);
 
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({
                 content: `No music currently playing ${inter.member}... try again ? ❌`,
                 ephemeral: true,

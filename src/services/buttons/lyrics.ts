@@ -1,15 +1,15 @@
 import { EmbedBuilder } from 'discord.js';
-import { lyricsClient } from '../lyrics.service';
+import { getLyrics } from '../lyrics.service';
 
 export const lyricsButton = {
     name: 'lyrics',
     command: async ({ inter, queue }) => {
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({ content: `No music currently playing... try again ? ❌`, ephemeral: true });
         }
 
         try {
-            const search = await lyricsClient.songs.search(queue.currentTrack.title);
+            const search = await getLyrics(queue.currentTrack.title);
 
             const song = search.find(
                 (song) => song.artist.name.toLowerCase() === queue.currentTrack.author.toLowerCase(),

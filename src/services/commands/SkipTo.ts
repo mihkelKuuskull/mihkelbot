@@ -4,7 +4,6 @@ import { useQueue } from 'discord-player';
 export const skipToCommand = {
     name: 'skipto',
     description: 'skips to particular track in queue',
-    voiceChannel: true,
     options: [
         {
             name: 'song',
@@ -20,13 +19,13 @@ export const skipToCommand = {
         },
     ],
 
-    async execute({ inter }) {
+    execute: async ({ inter }) => {
         const track = inter.options.getString('song');
         const number = inter.options.getNumber('number');
 
         const queue = useQueue(inter.guild);
 
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({
                 content: `No music currently playing ${inter.member}... try again ? ❌`,
                 ephemeral: true,

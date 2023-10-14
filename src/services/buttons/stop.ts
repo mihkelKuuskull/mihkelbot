@@ -3,8 +3,9 @@ import { EmbedBuilder } from 'discord.js';
 export const stopButton = {
     name: 'stop',
     command: async ({ inter, queue }) => {
-        if (!queue || !queue.isPlaying())
+        if (!queue?.isPlaying()) {
             return inter.editReply({ content: `No music currently playing... try again ? ❌`, ephemeral: true });
+        }
 
         queue.delete();
 

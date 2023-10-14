@@ -1,8 +1,9 @@
 export const resumePauseButton = {
     name: 'resume&pause',
     command: async ({ inter, queue }) => {
-        if (!queue || !queue.isPlaying())
+        if (!queue?.isPlaying()) {
             return inter.editReply({ content: `No music currently playing... try again ? ❌`, ephemeral: true });
+        }
 
         const resumed = queue.node.resume();
         let message = `Current music ${queue.currentTrack.title} resumed ✅`;

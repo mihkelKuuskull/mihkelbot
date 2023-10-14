@@ -17,7 +17,7 @@ export const seekCommand = {
     async execute({ inter }) {
         const queue = useQueue(inter.guild);
 
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({
                 content: `No music currently playing ${inter.editReply}... try again ? ❌`,
                 ephemeral: true,

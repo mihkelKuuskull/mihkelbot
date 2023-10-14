@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 import { useQueue } from 'discord-player';
-import { lyricsClient } from '../lyrics.service';
+import { getLyrics } from '../lyrics.service';
 
 export const lyricsCommand = {
     name: 'lyrics',
@@ -8,7 +8,7 @@ export const lyricsCommand = {
     execute: async ({ inter }) => {
         const queue = useQueue(inter.guild);
 
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({
                 content: `No music currently playing ${inter.member}... try again ? ❌`,
                 ephemeral: true,
@@ -16,7 +16,7 @@ export const lyricsCommand = {
         }
 
         try {
-            const search = await lyricsClient.songs.search(queue.currentTrack.title);
+            const search = await getLyrics(queue.currentTrack.title);
 
             const song = search.find(
                 (song) => song.artist.name.toLowerCase() === queue.currentTrack.author.toLowerCase(),

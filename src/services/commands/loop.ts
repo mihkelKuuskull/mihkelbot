@@ -22,7 +22,7 @@ export const loopCommand = {
         const queue = useQueue(inter.guild);
         const BaseEmbed = new EmbedBuilder().setColor('#2f3136');
 
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({
                 content: `No music currently playing ${inter.member}... try again ? ❌`,
                 ephemeral: true,

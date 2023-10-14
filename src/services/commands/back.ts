@@ -8,7 +8,7 @@ export const backCommand = {
     execute: async ({ inter }) => {
         const queue = useQueue(inter.guild);
 
-        if (!queue || !queue.node.isPlaying()) {
+        if (!queue?.node.isPlaying()) {
             return inter.editReply({
                 content: `No music currently playing ${inter.member}... try again ? ❌`,
                 ephemeral: true,

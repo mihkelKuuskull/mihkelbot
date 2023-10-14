@@ -7,8 +7,8 @@
     "scripts": {
         "start": "node dist/app.js",
         "start-dev": "nodemon dist/app.js",
-        "lint": "eslint --ext '.ts' src test",
-        "lint-fix": "eslint --fix --ext '.ts' src test",
+        "lint": "eslint --ext '.ts' src",
+        "lint-fix": "eslint --fix --ext '.ts' src",
         "build": "rimraf dist && npm run -s build-ts",
         "watch": "rimraf dist && npm run -s watch-ts",
         "build-ts": "tsc",

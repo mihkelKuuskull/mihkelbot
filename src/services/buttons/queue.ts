@@ -3,7 +3,7 @@ import { EmbedBuilder } from 'discord.js';
 export const queueButton = {
     name: 'queue',
     command: async ({ client, inter, queue }) => {
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({ content: `No music currently playing... try again ? ❌`, ephemeral: true });
         }
 

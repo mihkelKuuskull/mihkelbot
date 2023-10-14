@@ -3,8 +3,9 @@ import { EmbedBuilder } from 'discord.js';
 export const saveTrackButton = {
     name: 'savetrack',
     command: async ({ inter, queue }) => {
-        if (!queue || !queue.isPlaying())
+        if (!queue?.isPlaying()) {
             return inter.editReply({ content: `No music currently playing... try again ? ❌`, ephemeral: true });
+        }
 
         inter.member
             .send({

@@ -8,12 +8,11 @@ export const historyCommand = {
     execute: async ({ inter }) => {
         const queue = useQueue(inter.guild);
 
-        if (!queue || queue.history.tracks.toArray().length == 0) {
+        if (queue?.history.tracks.toArray().length == 0) {
             return inter.editReply({ content: `No music has been played yet`, ephemeral: true });
         }
 
         const tracks = queue.history.tracks.toArray();
-        console.log(tracks);
         const description = tracks
             .slice(0, 20)
             .map((track, index) => {

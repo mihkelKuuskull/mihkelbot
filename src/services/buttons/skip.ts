@@ -1,7 +1,7 @@
 export const skipButton = {
     name: 'skip',
     command: async ({ inter, queue }) => {
-        if (!queue || !queue.isPlaying()) {
+        if (!queue?.isPlaying()) {
             return inter.editReply({ content: `No music currently playing... try again ? ❌`, ephemeral: true });
         }
 
