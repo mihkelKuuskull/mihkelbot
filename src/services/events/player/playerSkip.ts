@@ -7,6 +7,6 @@ export const playerSkipEvent = {
             .setAuthor({ name: `Skipping **${track.title}** due to an issue! ❌`, iconURL: track.thumbnail })
             .setColor('#EE4B2B');
 
-        queue.metadata.send({ embeds: [playerSkip] });
+        queue.metadata.channel.send({ embeds: [playerSkip] });
     },
 };

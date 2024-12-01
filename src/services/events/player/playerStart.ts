@@ -37,6 +37,6 @@ export const playerStartEvent = {
             .setStyle(ButtonStyle.Secondary);
 
         const row1 = new ActionRowBuilder().addComponents(back, loop, resumepause, lyrics, skip);
-        queue.metadata.send({ embeds: [embed], components: [row1] });
+        queue.metadata.channel.send({ embeds: [embed], components: [row1] });
     },
 };

@@ -10,7 +10,7 @@ export const playerErrorEvent = {
             })
             .setColor('#EE4B2B');
 
-        queue.metadata.send({ embeds: [ErrorEmbed] });
+        queue.metadata.channel.send({ embeds: [ErrorEmbed] });
 
         console.log(`Error emitted from the PLayer ${error.message}`);
     },

@@ -7,6 +7,6 @@ export const emptyChannelEvent = {
             .setAuthor({ name: `Nobody is in the voice channel, leaving the voice channel!  ❌` })
             .setColor('#2f3136');
 
-        queue.metadata.send({ embeds: [emptyChannel] });
+        queue.metadata.channel.send({ embeds: [emptyChannel] });
     },
 };

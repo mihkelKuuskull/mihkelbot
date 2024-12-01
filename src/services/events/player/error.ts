@@ -9,7 +9,7 @@ export const errorEvent = {
             })
             .setColor('#EE4B2B');
 
-        queue.metadata.send({ embeds: [ErrorEmbed] });
+        queue.metadata.channel.send({ embeds: [ErrorEmbed] });
 
         console.log(`Error emitted from the Bot ${error.message}`);
     },

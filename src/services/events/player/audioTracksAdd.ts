@@ -12,6 +12,6 @@ export const audioTracksAddEvent = {
             .setAuthor({ name: `All the songs in playlist added into the queue ✅` })
             .setColor('#2f3136');
 
-        queue.metadata.send({ embeds: [audioTracksAdd] });
+        queue.metadata.channel.send({ embeds: [audioTracksAdd] });
     },
 };

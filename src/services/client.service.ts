@@ -3,6 +3,7 @@ import { commands } from './commands.service';
 import { config } from '../config';
 import { discordEvents, playerEvents } from './event.service';
 import { Player } from 'discord-player';
+import { YoutubeiExtractor } from 'discord-player-youtubei';
 
 export const client = new Client({
     intents: [
@@ -15,7 +16,7 @@ export const client = new Client({
     allowedMentions: { parse: ['everyone'] },
 });
 const player = new Player(client, config.opt.discordPlayer);
-player.extractors.loadDefault();
+player.extractors.register(YoutubeiExtractor, {});
 
 export function loadDiscordEvents() {
     discordEvents.forEach((event) => {

@@ -5,6 +5,6 @@ export const emptyQueueEvent = {
     event: (queue) => {
         const emptyQueue = new EmbedBuilder().setAuthor({ name: `No more songs in the queue! ❌` }).setColor('#2f3136');
 
-        queue.metadata.send({ embeds: [emptyQueue] });
+        queue.metadata.channel.send({ embeds: [emptyQueue] });
     },
 };
